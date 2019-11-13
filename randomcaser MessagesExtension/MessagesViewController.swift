@@ -11,9 +11,21 @@ import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
     
+    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var randomizeButton: UIButton!
+    @IBOutlet weak var copyToClipboardButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setupUI()
+    }
+    
+    //MARK: UI Setup
+    func setupUI() {
+        randomizeButton.layer.cornerRadius = 15
+        copyToClipboardButton.layer.cornerRadius = 15
     }
     
     // MARK: - Conversation Handling
@@ -23,6 +35,7 @@ class MessagesViewController: MSMessagesAppViewController {
         // This will happen when the extension is about to present UI.
         
         // Use this method to configure the extension and restore previously stored state.
+        
     }
     
     override func didResignActive(with conversation: MSConversation) {
@@ -64,4 +77,16 @@ class MessagesViewController: MSMessagesAppViewController {
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
 
+}
+
+//MARK: Text Field Methods
+extension MessagesViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if self.presentationStyle == .compact {
+            self.requestPresentationStyle(.expanded)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            textField.becomeFirstResponder()
+        }
+    }
 }
