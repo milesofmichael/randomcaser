@@ -48,6 +48,9 @@
                                 <state key="normal" title="Add to Message">
                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addToMessageButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="sjf-91-IX8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXs-sU-F4a">
                                 <rect key="frame" x="90" y="211.5" width="140" height="35"/>
@@ -60,6 +63,9 @@
                                 <state key="normal" title="Copy to Clipboard">
                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="copyButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="akK-8H-41B"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUs-WP-CKZ">
                                 <rect key="frame" x="102.5" y="111.5" width="115" height="35"/>
@@ -72,6 +78,9 @@
                                 <state key="normal" title="Re-Randomize">
                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="randomizeButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Vvo-Cn-wHm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

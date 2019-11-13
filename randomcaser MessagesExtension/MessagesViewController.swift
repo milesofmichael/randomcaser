@@ -9,6 +9,11 @@
 import UIKit
 import Messages
 
+enum CharCase: CaseIterable {
+    case upper
+    case lower
+}
+
 class MessagesViewController: MSMessagesAppViewController {
     
     @IBOutlet weak var inputTextField: UITextField!
@@ -31,10 +36,11 @@ class MessagesViewController: MSMessagesAppViewController {
         
         outputLabel.layer.borderColor = UIColor.white.cgColor
         outputLabel.layer.borderWidth = 1
+        
+        inputTextField.addTarget(self, action: #selector(textDidChange(_:)), for: UIControl.Event.editingChanged)
     }
     
     // MARK: - Conversation Handling
-    
     override func willBecomeActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the inactive to active state.
         // This will happen when the extension is about to present UI.
@@ -81,7 +87,40 @@ class MessagesViewController: MSMessagesAppViewController {
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
-
+    
+    //MARK: Randomcaser Method
+    func randomizeCase(inputText: String) -> String {
+        var output = ""
+        
+        for char in inputText {
+            let random = CharCase.allCases.randomElement()
+            switch random {
+            case .upper:
+                let upper = char.uppercased()
+                output.append(upper)
+            case .lower:
+                let lower = char.lowercased()
+                output.append(lower)
+            case .none:
+                fatalError("random enum was empty")
+            }
+        }
+        
+        return output
+    }
+    
+    //MARK: Button IBActions
+    @IBAction func randomizeButtonPressed(_ sender: Any) {
+        outputLabel.text = randomizeCase(inputText: outputLabel.text ?? "rAndOmIZeD rEsULt AppEArS hERe")
+    }
+    
+    @IBAction func addToMessageButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func copyButtonPressed(_ sender: Any) {
+        copyToClipboardButton.titleLabel?.text = "Copied!"
+    }
+    
 }
 
 //MARK: Text Field Methods
@@ -93,5 +132,10 @@ extension MessagesViewController: UITextFieldDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             textField.becomeFirstResponder()
         }
+    }
+    
+    @objc func textDidChange(_ textField: UITextField) {
+        copyToClipboardButton.titleLabel?.text = "Copy to Clipboard"
+        outputLabel.text = randomizeCase(inputText: textField.text ?? "rAndOmIZeD rEsULt AppEArS hERe")
     }
 }
