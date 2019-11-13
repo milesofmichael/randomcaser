@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,19 +38,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-zX-MZo">
-                                <rect key="frame" x="112.5" y="116.5" width="95" height="35"/>
+                                <rect key="frame" x="98.5" y="166.5" width="123" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="FkJ-ZR-vJc"/>
-                                    <constraint firstAttribute="width" constant="95" id="ftD-Zu-KQ4"/>
+                                    <constraint firstAttribute="width" constant="123" id="ftD-Zu-KQ4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <state key="normal" title="rAnDoMiZE">
+                                <state key="normal" title="Add to Message">
                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXs-sU-F4a">
-                                <rect key="frame" x="90" y="166.5" width="140" height="35"/>
+                                <rect key="frame" x="90" y="216.5" width="140" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="1Sj-1p-dft"/>
@@ -61,29 +61,44 @@
                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUs-WP-CKZ">
+                                <rect key="frame" x="102.5" y="116.5" width="115" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="MEV-7W-ejW"/>
+                                    <constraint firstAttribute="width" constant="115" id="p8s-3I-J9w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Re-Randomize">
+                                    <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="LDy-ih-0nr" firstAttribute="trailing" secondItem="Voj-ob-B6q" secondAttribute="trailing" constant="25" id="4mB-Ks-5xX"/>
                             <constraint firstItem="JXs-sU-F4a" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="Sud-z4-7jb"/>
-                            <constraint firstItem="tqC-zX-MZo" firstAttribute="top" secondItem="Voj-ob-B6q" secondAttribute="bottom" constant="20" id="Vaa-iH-lMD"/>
                             <constraint firstItem="HZd-Dr-HXE" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" constant="10" id="b5x-tD-4UL"/>
                             <constraint firstItem="Voj-ob-B6q" firstAttribute="leading" secondItem="LDy-ih-0nr" secondAttribute="leading" constant="25" id="bfh-gI-A4O"/>
                             <constraint firstItem="HZd-Dr-HXE" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="10" id="fez-HS-x1h"/>
+                            <constraint firstItem="tqC-zX-MZo" firstAttribute="top" secondItem="xUs-WP-CKZ" secondAttribute="bottom" constant="15" id="mjF-XL-KQa"/>
                             <constraint firstItem="JXs-sU-F4a" firstAttribute="top" secondItem="tqC-zX-MZo" secondAttribute="bottom" constant="15" id="mnX-H2-sfo"/>
                             <constraint firstItem="tqC-zX-MZo" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="rcV-dw-XQM"/>
                             <constraint firstItem="Voj-ob-B6q" firstAttribute="top" secondItem="HZd-Dr-HXE" secondAttribute="bottom" constant="10" id="vCN-bh-Uxt"/>
                             <constraint firstAttribute="trailing" secondItem="HZd-Dr-HXE" secondAttribute="trailing" constant="10" id="vur-FY-fNv"/>
+                            <constraint firstItem="xUs-WP-CKZ" firstAttribute="top" secondItem="Voj-ob-B6q" secondAttribute="bottom" constant="20" id="yyh-wi-QjY"/>
+                            <constraint firstItem="xUs-WP-CKZ" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="zfO-ok-8W1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
+                        <outlet property="addToMessageButton" destination="tqC-zX-MZo" id="wge-B8-kfx"/>
                         <outlet property="copyToClipboardButton" destination="JXs-sU-F4a" id="ooz-JT-QzR"/>
                         <outlet property="inputTextField" destination="HZd-Dr-HXE" id="MNj-ao-ETh"/>
                         <outlet property="outputLabel" destination="Voj-ob-B6q" id="ASD-75-PsD"/>
-                        <outlet property="randomizeButton" destination="tqC-zX-MZo" id="PpQ-dx-7BT"/>
+                        <outlet property="randomizeButton" destination="xUs-WP-CKZ" id="6CZ-Vu-ach"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>

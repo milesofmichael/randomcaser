@@ -14,6 +14,7 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var randomizeButton: UIButton!
+    @IBOutlet weak var addToMessageButton: UIButton!
     @IBOutlet weak var copyToClipboardButton: UIButton!
     
     override func viewDidLoad() {
@@ -26,6 +27,10 @@ class MessagesViewController: MSMessagesAppViewController {
     func setupUI() {
         randomizeButton.layer.cornerRadius = 15
         copyToClipboardButton.layer.cornerRadius = 15
+        addToMessageButton.layer.cornerRadius = 15
+        
+        outputLabel.layer.borderColor = UIColor.white.cgColor
+        outputLabel.layer.borderWidth = 5
     }
     
     // MARK: - Conversation Handling
