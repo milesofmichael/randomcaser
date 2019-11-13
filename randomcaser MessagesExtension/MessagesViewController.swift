@@ -30,7 +30,7 @@ class MessagesViewController: MSMessagesAppViewController {
         addToMessageButton.layer.cornerRadius = 15
         
         outputLabel.layer.borderColor = UIColor.white.cgColor
-        outputLabel.layer.borderWidth = 5
+        outputLabel.layer.borderWidth = 1
     }
     
     // MARK: - Conversation Handling
