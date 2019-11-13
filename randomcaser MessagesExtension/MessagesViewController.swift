@@ -158,6 +158,15 @@ extension MessagesViewController: UITextFieldDelegate {
         sendMessageButton.setTitle("Send Message", for: .normal)
         addToMessageButton.setTitle("Add to Message Box", for: .normal)
         copyToClipboardButton.setTitle("Copy to Clipboard", for: .normal)
-        outputLabel.text = randomizeCase(inputText: textField.text ?? "rAndOmIZeD rEsULt AppEArS hERe")
+        
+        if let text = textField.text {
+            if text.isEmpty {
+                outputLabel.text = "rAndOmIZeD rEsULt AppEArS hERe"
+            } else {
+                outputLabel.text = randomizeCase(inputText: text)
+            }
+        } else {
+            outputLabel.text = "rAndOmIZeD rEsULt AppEArS hERe"
+        }
     }
 }
