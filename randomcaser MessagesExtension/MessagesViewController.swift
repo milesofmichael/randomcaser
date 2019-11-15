@@ -32,10 +32,10 @@ class MessagesViewController: MSMessagesAppViewController {
     
     //MARK: UI Setup
     func setupUI() {
-        randomizeButton.layer.cornerRadius = 15
-        copyToClipboardButton.layer.cornerRadius = 15
-        addToMessageButton.layer.cornerRadius = 15
-        sendMessageButton.layer.cornerRadius = 15
+        randomizeButton.layer.cornerRadius = 5
+        copyToClipboardButton.layer.cornerRadius = 5
+        addToMessageButton.layer.cornerRadius = 5
+        sendMessageButton.layer.cornerRadius = 5
         
         outputLabel.layer.borderColor = UIColor.white.cgColor
         outputLabel.layer.borderWidth = 1
