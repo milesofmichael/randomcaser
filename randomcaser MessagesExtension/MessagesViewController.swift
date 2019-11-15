@@ -33,9 +33,15 @@ class MessagesViewController: MSMessagesAppViewController {
     //MARK: UI Setup
     func setupUI() {
         randomizeButton.layer.cornerRadius = 5
+        
         copyToClipboardButton.layer.cornerRadius = 5
+        copyToClipboardButton.translatesAutoresizingMaskIntoConstraints = true
+        
         addToMessageButton.layer.cornerRadius = 5
+        addToMessageButton.translatesAutoresizingMaskIntoConstraints = true
+        
         sendMessageButton.layer.cornerRadius = 5
+        sendMessageButton.translatesAutoresizingMaskIntoConstraints = true
         
         outputLabel.layer.borderColor = UIColor.white.cgColor
         outputLabel.layer.borderWidth = 1
