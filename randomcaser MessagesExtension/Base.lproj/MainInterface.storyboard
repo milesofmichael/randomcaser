@@ -96,6 +96,9 @@
                                         <state key="normal" title="Go PRO - Remove Signature">
                                             <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="goProPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="hFs-AN-qx4"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq9-iS-kIh">
                                         <rect key="frame" x="0.0" y="114" width="300" height="30"/>
@@ -104,6 +107,9 @@
                                         <state key="normal" title="Restore PRO Purchase">
                                             <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="restoreButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="e6k-9U-5RA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

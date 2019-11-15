@@ -8,6 +8,7 @@
 
 import UIKit
 import Messages
+import StoreKit
 
 enum CharCase: CaseIterable {
     case upper
@@ -26,6 +27,8 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBOutlet weak var restorePurchaseButton: UIButton!
     
     let defaults = UserDefaults.standard
+    
+    var isProUser = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +67,8 @@ class MessagesViewController: MSMessagesAppViewController {
         } else {
             print("Saved string == nil")
         }
+        
+        isProUser = defaults.bool(forKey: "Is Pro User")
     }
     
     override func didBecomeActive(with conversation: MSConversation) {
@@ -83,6 +88,10 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         } else {
             defaults.set(nil, forKey: "Initial Text")
+        }
+        
+        if isProUser {
+            defaults.set(true, forKey: "Is Pro User")
         }
     }
     
@@ -205,5 +214,48 @@ extension MessagesViewController: UITextFieldDelegate {
         } else {
             outputLabel.text = "rAndOmIZeD rEsULt AppEArS hERe"
         }
+    }
+}
+
+//MARK: In-App Purchase Handling
+extension MessagesViewController: SKPaymentTransactionObserver {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased:
+                print("Purchase worked!")
+                isProUser = true
+            case .restored:
+                print("Purchase restored.")
+                isProUser = true
+            case .failed:
+                print(transaction.error!.localizedDescription)
+                print(transaction.transactionIdentifier!)
+            default:
+                inAppPurchaseFailNotice()
+            }
+        }
+    }
+    
+    private func inAppPurchaseFailNotice() {
+        let alert = UIAlertController(title: "In-App Purchase Failed", message: "Check your internet connection/payment methods and try again!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction func goProPressed(_ sender: Any) {
+        SKPaymentQueue.default().add(self)
+        if SKPaymentQueue.canMakePayments() {
+            let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = "com.michaelgagemiles.randomcaser.proversion"
+            SKPaymentQueue.default().add(paymentRequest)
+        } else {
+            inAppPurchaseFailNotice()
+            print("SKPaymentQueue didn't work")
+        }
+    }
+    
+    @IBAction func restoreButtonPressed(_ sender: Any) {
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
 }
