@@ -33,7 +33,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S7V-oY-Gg3">
-                                <rect key="frame" x="10" y="106.5" width="300" height="68"/>
+                                <rect key="frame" x="10" y="106.5" width="300" height="144"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dnk-ib-v3v">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -84,17 +84,36 @@
                                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="addToMessageButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="jYF-01-Xay"/>
                                                     <action selector="sendMessagePressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Naj-Hn-d4T"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-0m-GAz">
+                                        <rect key="frame" x="0.0" y="76" width="300" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <state key="normal" title="Go PRO - Remove Signature">
+                                            <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq9-iS-kIh">
+                                        <rect key="frame" x="0.0" y="114" width="300" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <state key="normal" title="Restore PRO Purchase">
+                                            <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="LYG-0m-GAz" secondAttribute="trailing" id="9DR-g3-STW"/>
+                                    <constraint firstItem="LYG-0m-GAz" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="EKd-90-ucb"/>
                                     <constraint firstItem="NRw-H7-ubT" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="NPj-MT-l1I"/>
                                     <constraint firstItem="dnk-ib-v3v" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="PpH-rv-hzP"/>
+                                    <constraint firstItem="aq9-iS-kIh" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="Xnp-4r-C4q"/>
                                     <constraint firstAttribute="trailing" secondItem="NRw-H7-ubT" secondAttribute="trailing" id="hbh-D3-FSR"/>
+                                    <constraint firstAttribute="trailing" secondItem="aq9-iS-kIh" secondAttribute="trailing" id="sB2-M5-2Ec"/>
                                     <constraint firstAttribute="trailing" secondItem="dnk-ib-v3v" secondAttribute="trailing" id="ve8-Z6-Lib"/>
                                 </constraints>
                             </stackView>
@@ -118,9 +137,11 @@
                     <connections>
                         <outlet property="addToMessageButton" destination="tqC-zX-MZo" id="wge-B8-kfx"/>
                         <outlet property="copyToClipboardButton" destination="JXs-sU-F4a" id="ooz-JT-QzR"/>
+                        <outlet property="goProButton" destination="LYG-0m-GAz" id="I2Z-Nq-5gR"/>
                         <outlet property="inputTextField" destination="HZd-Dr-HXE" id="MNj-ao-ETh"/>
                         <outlet property="outputLabel" destination="Voj-ob-B6q" id="ASD-75-PsD"/>
                         <outlet property="randomizeButton" destination="xUs-WP-CKZ" id="6CZ-Vu-ach"/>
+                        <outlet property="restorePurchaseButton" destination="aq9-iS-kIh" id="Dqe-sM-KmT"/>
                         <outlet property="sendMessageButton" destination="5yd-rB-AkM" id="3Te-mm-3by"/>
                     </connections>
                 </viewController>

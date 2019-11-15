@@ -22,6 +22,8 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBOutlet weak var sendMessageButton: UIButton!
     @IBOutlet weak var addToMessageButton: UIButton!
     @IBOutlet weak var copyToClipboardButton: UIButton!
+    @IBOutlet weak var goProButton: UIButton!
+    @IBOutlet weak var restorePurchaseButton: UIButton!
     
     let defaults = UserDefaults.standard
     
@@ -33,15 +35,14 @@ class MessagesViewController: MSMessagesAppViewController {
     //MARK: UI Setup
     func setupUI() {
         randomizeButton.layer.cornerRadius = 5
-        
         copyToClipboardButton.layer.cornerRadius = 5
         copyToClipboardButton.translatesAutoresizingMaskIntoConstraints = true
-        
         addToMessageButton.layer.cornerRadius = 5
         addToMessageButton.translatesAutoresizingMaskIntoConstraints = true
-        
         sendMessageButton.layer.cornerRadius = 5
         sendMessageButton.translatesAutoresizingMaskIntoConstraints = true
+        goProButton.layer.cornerRadius = 5
+        restorePurchaseButton.layer.cornerRadius = 5
         
         outputLabel.layer.borderColor = UIColor.white.cgColor
         outputLabel.layer.borderWidth = 1
@@ -92,7 +93,7 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     //MARK: Randomcaser Method
-    func randomizeCase(inputText: String) -> String {
+    private func randomizeCase(inputText: String) -> String {
         var output = ""
         
         for char in inputText {
@@ -122,6 +123,10 @@ class MessagesViewController: MSMessagesAppViewController {
     
     @IBAction func sendMessagePressed(_ sender: Any) {
         if let text = outputLabel.text {
+            if text == "rAndOmIZeD rEsULt AppEArS hERe" {
+                noTextPopup()
+                return
+            }
             activeConversation?.sendText(text) { error in
                 print(error?.localizedDescription ?? "Send Message Worked")
             }
@@ -136,6 +141,10 @@ class MessagesViewController: MSMessagesAppViewController {
     
     @IBAction func addToMessageButtonPressed(_ sender: Any) {
         if let text = outputLabel.text {
+            if text == "rAndOmIZeD rEsULt AppEArS hERe" {
+                noTextPopup()
+                return
+            }
             activeConversation?.insertText(text) { error in
                 print(error?.localizedDescription ?? "Insert Message Worked")
             }
@@ -152,6 +161,10 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBAction func copyButtonPressed(_ sender: Any) {
         let pasteboard = UIPasteboard.general
         if let text = outputLabel.text {
+            if text == "rAndOmIZeD rEsULt AppEArS hERe" {
+                noTextPopup()
+                return
+            }
             pasteboard.string = text
             copyToClipboardButton.setTitle("Copied!", for: .normal)
         } else {
@@ -160,6 +173,12 @@ class MessagesViewController: MSMessagesAppViewController {
         if self.presentationStyle == .expanded {
             self.requestPresentationStyle(.compact)
         }
+    }
+    
+    private func noTextPopup() {
+        let alert = UIAlertController(title: "No Text Available", message: "Start typing in the text box to get started!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }
