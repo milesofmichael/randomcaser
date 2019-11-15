@@ -108,6 +108,9 @@ class MessagesViewController: MSMessagesAppViewController {
     
     //MARK: Button IBActions
     @IBAction func randomizeButtonPressed(_ sender: Any) {
+        sendMessageButton.setTitle("Send Message", for: .normal)
+        addToMessageButton.setTitle("Add to Message Box", for: .normal)
+        copyToClipboardButton.setTitle("Copy to Clipboard", for: .normal)
         outputLabel.text = randomizeCase(inputText: outputLabel.text ?? "rAndOmIZeD rEsULt AppEArS hERe")
     }
     
@@ -119,6 +122,9 @@ class MessagesViewController: MSMessagesAppViewController {
             sendMessageButton.setTitle("Sent!", for: .normal)
         } else {
             sendMessageButton.setTitle("Error", for: .normal)
+        }
+        if self.presentationStyle == .expanded {
+            self.requestPresentationStyle(.compact)
         }
     }
     
@@ -132,6 +138,9 @@ class MessagesViewController: MSMessagesAppViewController {
         } else {
             addToMessageButton.setTitle("Error", for: .normal)
         }
+        if self.presentationStyle == .expanded {
+            self.requestPresentationStyle(.compact)
+        }
     }
     
     @IBAction func copyButtonPressed(_ sender: Any) {
@@ -141,6 +150,9 @@ class MessagesViewController: MSMessagesAppViewController {
             copyToClipboardButton.setTitle("Copied!", for: .normal)
         } else {
             copyToClipboardButton.setTitle("Error Copying", for: .normal)
+        }
+        if self.presentationStyle == .expanded {
+            self.requestPresentationStyle(.compact)
         }
     }
     
