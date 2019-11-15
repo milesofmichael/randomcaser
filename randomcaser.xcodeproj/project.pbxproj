@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C120FC7237BD8C800CD779F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C120FC6237BD8C800CD779F /* Assets.xcassets */; };
 		5C120FCE237BD8C900CD779F /* randomcaser MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5C120FCD237BD8C900CD779F /* randomcaser MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5C120FD3237BD8C900CD779F /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C120FD2237BD8C900CD779F /* Messages.framework */; };
 		5C120FD6237BD8C900CD779F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C120FD5237BD8C900CD779F /* MessagesViewController.swift */; };
 		5C120FD9237BD8C900CD779F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C120FD7237BD8C900CD779F /* MainInterface.storyboard */; };
 		5C120FDB237BD8C900CD779F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C120FDA237BD8C900CD779F /* Assets.xcassets */; };
 		5C19E76D237E3B9C00032903 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C19E76C237E3B9C00032903 /* StoreKit.framework */; };
+		5C19E775237E63D500032903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E774237E63D500032903 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		5C120FC3237BD8C700CD779F /* randomcaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = randomcaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C120FC6237BD8C800CD779F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C120FC8237BD8C800CD779F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C120FCD237BD8C900CD779F /* randomcaser MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "randomcaser MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C120FD2237BD8C900CD779F /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
@@ -51,6 +50,7 @@
 		5C120FDA237BD8C900CD779F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C120FDC237BD8C900CD779F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C19E76C237E3B9C00032903 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5C19E774237E63D500032903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +88,8 @@
 		5C120FC5237BD8C700CD779F /* randomcaser */ = {
 			isa = PBXGroup;
 			children = (
-				5C120FC6237BD8C800CD779F /* Assets.xcassets */,
 				5C120FC8237BD8C800CD779F /* Info.plist */,
+				5C19E774237E63D500032903 /* Assets.xcassets */,
 			);
 			path = randomcaser;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C120FC7237BD8C800CD779F /* Assets.xcassets in Resources */,
+				5C19E775237E63D500032903 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 757N5X329U;
 				INFOPLIST_FILE = randomcaser/Info.plist;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -418,6 +419,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 757N5X329U;
 				INFOPLIST_FILE = randomcaser/Info.plist;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
