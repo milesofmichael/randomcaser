@@ -136,9 +136,16 @@ class MessagesViewController: MSMessagesAppViewController {
                 noTextPopup()
                 return
             }
-            activeConversation?.sendText(text) { error in
-                print(error?.localizedDescription ?? "Send Message Worked")
+            if isProUser {
+                activeConversation?.sendText(text) { error in
+                    print(error?.localizedDescription ?? "Insert message worked as PRO user")
+                }
+            } else {
+                activeConversation?.sendText("\(text)\n\n-Powered by the RandomCaser iMessage App") { error in
+                    print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
+                }
             }
+            
             sendMessageButton.setTitle("Sent!", for: .normal)
         } else {
             sendMessageButton.setTitle("Error", for: .normal)
@@ -154,9 +161,16 @@ class MessagesViewController: MSMessagesAppViewController {
                 noTextPopup()
                 return
             }
-            activeConversation?.insertText(text) { error in
-                print(error?.localizedDescription ?? "Insert Message Worked")
+            if isProUser {
+                activeConversation?.insertText(text) { error in
+                    print(error?.localizedDescription ?? "Insert message worked as PRO user")
+                }
+            } else {
+                activeConversation?.insertText("\(text)\n\n-Powered by the RandomCaser iMessage App") { error in
+                    print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
+                }
             }
+            
             addToMessageButton.setTitle("Added!", for: .normal)
             
         } else {
@@ -174,7 +188,11 @@ class MessagesViewController: MSMessagesAppViewController {
                 noTextPopup()
                 return
             }
-            pasteboard.string = text
+            if isProUser {
+                pasteboard.string = text
+            } else {
+                pasteboard.string = "\(text)\n\n-Powered by the RandomCaser iMessage App"
+            }
             copyToClipboardButton.setTitle("Copied!", for: .normal)
         } else {
             copyToClipboardButton.setTitle("Error Copying", for: .normal)
@@ -230,7 +248,7 @@ extension MessagesViewController: SKPaymentTransactionObserver {
                 isProUser = true
             case .failed:
                 print(transaction.error!.localizedDescription)
-                print(transaction.transactionIdentifier!)
+                print(transaction.transactionIdentifier ?? "Payment failed w/ no transaction ID.")
             default:
                 inAppPurchaseFailNotice()
             }
