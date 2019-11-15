@@ -101,7 +101,7 @@ class MessagesViewController: MSMessagesAppViewController {
         }
     }
     
-    //MARK: Randomcaser Method
+    //MARK: Randomcasing Method
     private func randomizeCase(inputText: String) -> String {
         var output = ""
         
@@ -145,7 +145,6 @@ class MessagesViewController: MSMessagesAppViewController {
                     print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
                 }
             }
-            
             sendMessageButton.setTitle("Sent!", for: .normal)
         } else {
             sendMessageButton.setTitle("Error", for: .normal)
@@ -170,7 +169,6 @@ class MessagesViewController: MSMessagesAppViewController {
                     print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
                 }
             }
-            
             addToMessageButton.setTitle("Added!", for: .normal)
             
         } else {
