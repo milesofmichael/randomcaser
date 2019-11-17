@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C120FCE237BD8C900CD779F /* randomcaser MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5C120FCD237BD8C900CD779F /* randomcaser MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5C120FCE237BD8C900CD779F /* RandomCaser.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5C120FCD237BD8C900CD779F /* RandomCaser.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5C120FD3237BD8C900CD779F /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C120FD2237BD8C900CD779F /* Messages.framework */; };
 		5C120FD6237BD8C900CD779F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C120FD5237BD8C900CD779F /* MessagesViewController.swift */; };
 		5C120FD9237BD8C900CD779F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C120FD7237BD8C900CD779F /* MainInterface.storyboard */; };
@@ -33,7 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				5C120FCE237BD8C900CD779F /* randomcaser MessagesExtension.appex in Embed App Extensions */,
+				5C120FCE237BD8C900CD779F /* RandomCaser.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,9 +41,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5C120FC3237BD8C700CD779F /* randomcaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = randomcaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C120FC3237BD8C700CD779F /* RandomCaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomCaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C120FC8237BD8C800CD779F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C120FCD237BD8C900CD779F /* randomcaser MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "randomcaser MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C120FCD237BD8C900CD779F /* RandomCaser.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RandomCaser.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C120FD2237BD8C900CD779F /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		5C120FD5237BD8C900CD779F /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		5C120FD8237BD8C900CD779F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -79,8 +79,8 @@
 		5C120FC4237BD8C700CD779F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C120FC3237BD8C700CD779F /* randomcaser.app */,
-				5C120FCD237BD8C900CD779F /* randomcaser MessagesExtension.appex */,
+				5C120FC3237BD8C700CD779F /* RandomCaser.app */,
+				5C120FCD237BD8C900CD779F /* RandomCaser.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,7 +131,7 @@
 			);
 			name = randomcaser;
 			productName = randomcaser;
-			productReference = 5C120FC3237BD8C700CD779F /* randomcaser.app */;
+			productReference = 5C120FC3237BD8C700CD779F /* RandomCaser.app */;
 			productType = "com.apple.product-type.application.messages";
 		};
 		5C120FCC237BD8C900CD779F /* randomcaser MessagesExtension */ = {
@@ -148,7 +148,7 @@
 			);
 			name = "randomcaser MessagesExtension";
 			productName = "randomcaser MessagesExtension";
-			productReference = 5C120FCD237BD8C900CD779F /* randomcaser MessagesExtension.appex */;
+			productReference = 5C120FCD237BD8C900CD779F /* RandomCaser.appex */;
 			productType = "com.apple.product-type.app-extension.messages";
 		};
 /* End PBXNativeTarget section */
@@ -365,9 +365,9 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser.MessagesExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RandomCaser;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -386,9 +386,9 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser.MessagesExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RandomCaser;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,9 +403,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 757N5X329U;
 				INFOPLIST_FILE = randomcaser/Info.plist;
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RandomCaser;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -419,9 +419,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 757N5X329U;
 				INFOPLIST_FILE = randomcaser/Info.plist;
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RandomCaser;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
