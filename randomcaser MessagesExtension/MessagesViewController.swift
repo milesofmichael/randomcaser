@@ -247,8 +247,9 @@ extension MessagesViewController: SKPaymentTransactionObserver {
             case .failed:
                 print(transaction.error!.localizedDescription)
                 print(transaction.transactionIdentifier ?? "Payment failed w/ no transaction ID.")
-            default:
                 inAppPurchaseFailNotice()
+            default:
+                print("Default called")
             }
         }
     }
