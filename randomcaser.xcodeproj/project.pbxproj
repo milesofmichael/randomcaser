@@ -365,7 +365,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser.MessagesExtension;
 				PRODUCT_NAME = RandomCaser;
 				SKIP_INSTALL = YES;
@@ -386,7 +386,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelgagemiles.randomcaser.MessagesExtension;
 				PRODUCT_NAME = RandomCaser;
 				SKIP_INSTALL = YES;

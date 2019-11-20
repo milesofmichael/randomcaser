@@ -267,7 +267,6 @@ extension MessagesViewController: SKPaymentTransactionObserver {
             paymentRequest.productIdentifier = "com.michaelgagemiles.randomcaser.proversion"
             SKPaymentQueue.default().add(paymentRequest)
         } else {
-            inAppPurchaseFailNotice()
             print("SKPaymentQueue didn't work")
         }
     }
