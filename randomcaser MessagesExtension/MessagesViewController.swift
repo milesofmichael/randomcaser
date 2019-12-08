@@ -247,18 +247,18 @@ extension MessagesViewController: SKPaymentTransactionObserver {
             case .failed:
                 print(transaction.error!.localizedDescription)
                 print(transaction.transactionIdentifier ?? "Payment failed w/ no transaction ID.")
-                inAppPurchaseFailNotice()
+//                inAppPurchaseFailNotice()
             default:
                 print("Default called")
             }
         }
     }
     
-    private func inAppPurchaseFailNotice() {
-        let alert = UIAlertController(title: "In-App Purchase Failed", message: "Check your internet connection/payment methods and try again!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
+//    private func inAppPurchaseFailNotice() {
+//        let alert = UIAlertController(title: "In-App Purchase Failed", message: "Check your internet connection/payment methods and try again!", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+//        self.present(alert, animated: true)
+//    }
     
     @IBAction func goProPressed(_ sender: Any) {
         SKPaymentQueue.default().add(self)
