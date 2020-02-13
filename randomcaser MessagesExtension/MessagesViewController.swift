@@ -55,10 +55,18 @@ class MessagesViewController: MSMessagesAppViewController {
         if #available(iOSApplicationExtension 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
+        
+        if isProUser {
+            restorePurchaseButton.isHidden = true
+            goProButton.isUserInteractionEnabled = false
+            goProButton.setTitle("Thanks for being a PRO user!", for: .normal)
+        }
     }
     
     // MARK: - Conversation Handling
     override func willBecomeActive(with conversation: MSConversation) {
+        isProUser = defaults.bool(forKey: "Is Pro User")
+        
         setupUI()
         
         if let savedString = defaults.string(forKey: "Initial Text") {
@@ -67,8 +75,6 @@ class MessagesViewController: MSMessagesAppViewController {
         } else {
             print("Saved string == nil")
         }
-        
-        isProUser = defaults.bool(forKey: "Is Pro User")
     }
     
     override func didBecomeActive(with conversation: MSConversation) {
@@ -241,9 +247,11 @@ extension MessagesViewController: SKPaymentTransactionObserver {
             case .purchased:
                 print("Purchase worked!")
                 isProUser = true
+                setupUI()
             case .restored:
                 print("Purchase restored.")
                 isProUser = true
+                setupUI()
             case .failed:
                 print(transaction.error!.localizedDescription)
                 print(transaction.transactionIdentifier ?? "Payment failed w/ no transaction ID.")
