@@ -51,11 +51,10 @@ class MessagesViewController: MSMessagesAppViewController {
         outputLabel.layer.borderWidth = 1
         
         inputTextField.addTarget(self, action: #selector(textDidChange(_:)), for: UIControl.Event.editingChanged)
-        
-        if #available(iOSApplicationExtension 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
-        
+
+        // Force light mode appearance
+        overrideUserInterfaceStyle = .light
+
         if isProUser {
             restorePurchaseButton.isHidden = true
             goProButton.isUserInteractionEnabled = false
@@ -241,17 +240,25 @@ extension MessagesViewController: UITextFieldDelegate {
 
 //MARK: In-App Purchase Handling
 extension MessagesViewController: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    /// Payment queue observer method - called from any thread by StoreKit
+    /// Marked nonisolated to avoid Swift 6 concurrency warnings, with manual main actor dispatch for UI updates
+    nonisolated func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
                 print("Purchase worked!")
-                isProUser = true
-                setupUI()
+                // Dispatch UI updates to main actor
+                Task { @MainActor in
+                    self.isProUser = true
+                    self.setupUI()
+                }
             case .restored:
                 print("Purchase restored.")
-                isProUser = true
-                setupUI()
+                // Dispatch UI updates to main actor
+                Task { @MainActor in
+                    self.isProUser = true
+                    self.setupUI()
+                }
             case .failed:
                 print(transaction.error!.localizedDescription)
                 print(transaction.transactionIdentifier ?? "Payment failed w/ no transaction ID.")
