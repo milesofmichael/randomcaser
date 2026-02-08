@@ -76,7 +76,7 @@ class MessagesViewController: MSMessagesAppViewController {
         applyCornerStyling()
 
         // Update Go PRO button text
-        goProButton.setTitle("✨ Go PRO — More Themes, One Price, Forever", for: .normal)
+        goProButton.setTitle("✨ Go PRO — More Themes, One Price, Access Forever", for: .normal)
 
         // Show/hide buttons based on PRO status
         if isProUser {

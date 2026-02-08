@@ -66,7 +66,7 @@
                             <!-- Go PRO: SUBTLE button -->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-0m-GAz" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="368" width="292" height="44"/>
-                                <state key="normal" title="✨ Go PRO — All Themes, One Price, Forever"/>
+                                <state key="normal" title="✨ Go PRO — All Themes, One Price, Access Forever"/>
                                 <connections>
                                     <action selector="goProPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="hFs-AN-qx4"/>
                                 </connections>
