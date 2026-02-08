@@ -5,3 +5,10 @@ iMessage extension (only) that randomizes text case and sends messages. Written 
 ## Build & Test
 - Use xcbeautify for all builds: `xcodebuild ... | xcbeautify`
 - Test on iPhone 17 Pro simulator
+
+## In-App Purchases
+- uses StoreKit 1
+
+## Theming
+- in Theme.swift
+- colors are applied in MessagesViewController

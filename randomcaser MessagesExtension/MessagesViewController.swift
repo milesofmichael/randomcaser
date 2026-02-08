@@ -37,29 +37,48 @@ class MessagesViewController: MSMessagesAppViewController {
     
     //MARK: UI Setup
     func setupUI() {
-        randomizeButton.layer.cornerRadius = 5
-        copyToClipboardButton.layer.cornerRadius = 5
+        overrideUserInterfaceStyle = .light
+
+        // These buttons need autoresizing for programmatic layout adjustments
         copyToClipboardButton.translatesAutoresizingMaskIntoConstraints = true
-        addToMessageButton.layer.cornerRadius = 5
         addToMessageButton.translatesAutoresizingMaskIntoConstraints = true
-        sendMessageButton.layer.cornerRadius = 5
         sendMessageButton.translatesAutoresizingMaskIntoConstraints = true
-        goProButton.layer.cornerRadius = 5
-        restorePurchaseButton.layer.cornerRadius = 5
-        
-        outputLabel.layer.borderColor = UIColor.white.cgColor
-        outputLabel.layer.borderWidth = 1
-        
+
         inputTextField.addTarget(self, action: #selector(textDidChange(_:)), for: UIControl.Event.editingChanged)
 
-        // Force light mode appearance
-        overrideUserInterfaceStyle = .light
+        applyTheme(Theme.current)
 
         if isProUser {
             restorePurchaseButton.isHidden = true
             goProButton.isUserInteractionEnabled = false
             goProButton.setTitle("Thanks for being a PRO user!", for: .normal)
         }
+    }
+
+    /// Applies the given theme's color palette to all UI elements.
+    /// Storyboard handles layout (constraints, corner radii); this handles color.
+    func applyTheme(_ theme: Theme) {
+        view.backgroundColor = theme.background
+
+        // Primary action button
+        randomizeButton.backgroundColor = theme.primaryButtonBackground
+        randomizeButton.setTitleColor(theme.primaryButtonText, for: .normal)
+
+        // Secondary action buttons
+        for button in [copyToClipboardButton, addToMessageButton, sendMessageButton] {
+            button?.backgroundColor = theme.secondaryButtonBackground
+            button?.setTitleColor(theme.secondaryButtonText, for: .normal)
+        }
+
+        // Subtle pro/restore buttons
+        goProButton.backgroundColor = theme.subtleButtonBackground
+        goProButton.setTitleColor(theme.subtleButtonText, for: .normal)
+        restorePurchaseButton.backgroundColor = theme.subtleButtonBackground
+        restorePurchaseButton.setTitleColor(theme.subtleButtonText, for: .normal)
+
+        // Output label
+        outputLabel.backgroundColor = theme.outputBackground
+        outputLabel.textColor = theme.outputText
     }
     
     // MARK: - Conversation Handling
