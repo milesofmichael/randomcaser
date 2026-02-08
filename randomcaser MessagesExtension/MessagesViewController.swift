@@ -33,6 +33,9 @@ class MessagesViewController: MSMessagesAppViewController {
     /// Scroll view wrapping all content; created programmatically in setupScrollLayout().
     private var scrollView: UIScrollView!
 
+    /// Pending title-revert timers per button, so they can be cancelled on re-press or new input.
+    private var titleRevertWorkItems: [UIButton: DispatchWorkItem] = [:]
+
     let defaults = UserDefaults.standard
     var isProUser = false
 
@@ -236,6 +239,7 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Button Actions
 
     @IBAction func randomizeButtonPressed(_ sender: Any) {
+        cancelAllTitleReverts()
         sendMessageButton.setTitle("Send Message", for: .normal)
         addToMessageButton.setTitle("Add to Message Box", for: .normal)
         copyToClipboardButton.setTitle("Copy to Clipboard", for: .normal)
@@ -257,9 +261,9 @@ class MessagesViewController: MSMessagesAppViewController {
                     print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
                 }
             }
-            sendMessageButton.setTitle("Sent!", for: .normal)
+            flashTitle("Sent!", on: sendMessageButton, revertTo: "Send Message")
         } else {
-            sendMessageButton.setTitle("Error", for: .normal)
+            flashTitle("Error", on: sendMessageButton, revertTo: "Send Message")
         }
         if self.presentationStyle == .expanded {
             self.requestPresentationStyle(.compact)
@@ -281,10 +285,9 @@ class MessagesViewController: MSMessagesAppViewController {
                     print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
                 }
             }
-            addToMessageButton.setTitle("Added!", for: .normal)
-
+            flashTitle("Added!", on: addToMessageButton, revertTo: "Add to Message Box")
         } else {
-            addToMessageButton.setTitle("Error", for: .normal)
+            flashTitle("Error", on: addToMessageButton, revertTo: "Add to Message Box")
         }
         if self.presentationStyle == .expanded {
             self.requestPresentationStyle(.compact)
@@ -303,13 +306,35 @@ class MessagesViewController: MSMessagesAppViewController {
             } else {
                 pasteboard.string = "\(text)\n\n-Powered by the RandomCaser iMessage App"
             }
-            copyToClipboardButton.setTitle("Copied!", for: .normal)
+            flashTitle("Copied!", on: copyToClipboardButton, revertTo: "Copy to Clipboard")
         } else {
-            copyToClipboardButton.setTitle("Error Copying", for: .normal)
+            flashTitle("Error Copying", on: copyToClipboardButton, revertTo: "Copy to Clipboard")
         }
         if self.presentationStyle == .expanded {
             self.requestPresentationStyle(.compact)
         }
+    }
+
+    /// Temporarily shows feedback text on a button, then cross-dissolves back
+    /// to the original title after 3 seconds. Cancels any pending revert for that button.
+    private func flashTitle(_ temporary: String, on button: StyledButton, revertTo original: String) {
+        titleRevertWorkItems[button]?.cancel()
+        button.setTitle(temporary, for: .normal)
+
+        let workItem = DispatchWorkItem { [weak self] in
+            UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve) {
+                button.setTitle(original, for: .normal)
+            }
+            self?.titleRevertWorkItems.removeValue(forKey: button)
+        }
+        titleRevertWorkItems[button] = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: workItem)
+    }
+
+    /// Cancels all pending title-revert timers and immediately restores original titles.
+    private func cancelAllTitleReverts() {
+        titleRevertWorkItems.values.forEach { $0.cancel() }
+        titleRevertWorkItems.removeAll()
     }
 
     private func noTextPopup() {
@@ -330,6 +355,7 @@ extension MessagesViewController: UITextFieldDelegate {
     }
 
     @objc func textDidChange(_ textField: UITextField) {
+        cancelAllTitleReverts()
         sendMessageButton.setTitle("Send Message", for: .normal)
         addToMessageButton.setTitle("Add to Message Box", for: .normal)
         copyToClipboardButton.setTitle("Copy to Clipboard", for: .normal)
