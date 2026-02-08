@@ -209,7 +209,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self?.applyTheme(theme)
                     self?.configureSwitchThemeMenu()
-                    self?.updateAppIcon(for: theme)
+
                 }
             }
         }
@@ -227,19 +227,7 @@ class MessagesViewController: MSMessagesAppViewController {
         }
     }
 
-    /// Stub for switching the app icon to match the selected theme.
-    /// iMessage extensions don't have access to UIApplication.shared,
-    /// so this logs the intent and is ready to uncomment if a containing app is added.
-    private func updateAppIcon(for theme: Theme) {
-        let iconName = theme.iconName ?? "Default"
-        print("App icon would switch to: \(iconName)")
-        // Uncomment when a containing app provides UIApplication access:
-        // UIApplication.shared.setAlternateIconName(theme.iconName) { error in
-        //     if let error { print("Icon switch failed: \(error.localizedDescription)") }
-        // }
-    }
-
-    // MARK: - Conversation Handling
+// MARK: - Conversation Handling
 
     override func willBecomeActive(with conversation: MSConversation) {
         isProUser = defaults.bool(forKey: "Is Pro User")

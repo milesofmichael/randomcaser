@@ -33,18 +33,7 @@ enum Theme: String, CaseIterable {
         }
     }
 
-    /// Alternate app icon asset name. nil = use default icon.
-    var iconName: String? {
-        switch self {
-        case .sagePark:    return nil
-        case .beachClaw:   return "AppIcon-BeachClaw"
-        case .royalPurple: return "AppIcon-RoyalPurple"
-        case .redNBlack:   return "AppIcon-RedNBlack"
-        case .robotic:     return "AppIcon-Robotic"
-        }
-    }
-
-    /// When true, buttons use unmodified system glass (no custom tinting).
+/// When true, buttons use unmodified system glass (no custom tinting).
     /// Only the Robotic theme enables this.
     var isGlassNative: Bool {
         return self == .robotic
