@@ -41,35 +41,23 @@ class StyledButton: UIButton {
 
         switch tier {
         case .primary:
-            var config = UIButton.Configuration.glass()
+            var config = UIButton.Configuration.prominentGlass()
             config.title = currentTitle
-            config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attrs in
-                var out = attrs
-                out.foregroundColor = .white
-                return out
-            }
+            config.baseForegroundColor = .white
             configuration = config
             tintColor = theme.darkAccent
 
         case .secondary:
-            var config = UIButton.Configuration.glass()
+            var config = UIButton.Configuration.prominentGlass()
             config.title = currentTitle
-            config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [theme] attrs in
-                var out = attrs
-                out.foregroundColor = theme.darkAccent
-                return out
-            }
+            config.baseForegroundColor = theme.darkAccent
             configuration = config
-            tintColor = theme.darkAccent
+            tintColor = .white
 
         case .subtle:
             var config = UIButton.Configuration.prominentGlass()
             config.title = currentTitle
-            config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [theme] attrs in
-                var out = attrs
-                out.foregroundColor = theme.darkAccent
-                return out
-            }
+            config.baseForegroundColor = theme.darkAccent
             configuration = config
             tintColor = theme.cream
         }

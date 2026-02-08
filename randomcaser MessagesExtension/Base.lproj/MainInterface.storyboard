@@ -28,19 +28,13 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rAndOmIZeD rEsULt AppEArS hERe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Voj-ob-B6q">
                                 <rect key="frame" x="25" y="78" width="270" height="64"/>
-                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <!-- Re-Randomize: PRIMARY button -->
+                            <!-- Re-Randomize: PRIMARY button (colors applied by StyledButton) -->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUs-WP-CKZ" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="152" width="292" height="44"/>
-                                <color key="backgroundColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <state key="normal" title="Re-Randomize">
-                                    <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Re-Randomize"/>
                                 <connections>
                                     <action selector="randomizeButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Vvo-Cn-wHm"/>
                                 </connections>
@@ -48,11 +42,7 @@
                             <!-- Copy to Clipboard: SECONDARY button -->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXs-sU-F4a" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="206" width="292" height="44"/>
-                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <state key="normal" title="Copy to Clipboard">
-                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Copy to Clipboard"/>
                                 <connections>
                                     <action selector="copyButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="akK-8H-41B"/>
                                 </connections>
@@ -60,11 +50,7 @@
                             <!-- Add to Message Box: SECONDARY button -->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-zX-MZo" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="260" width="292" height="44"/>
-                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <state key="normal" title="Add to Message Box">
-                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Add to Message Box"/>
                                 <connections>
                                     <action selector="addToMessageButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="sjf-91-IX8"/>
                                 </connections>
@@ -72,11 +58,7 @@
                             <!-- Send Message: SECONDARY button -->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yd-rB-AkM" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="314" width="292" height="44"/>
-                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <state key="normal" title="Send Message">
-                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Send Message"/>
                                 <connections>
                                     <action selector="sendMessagePressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Naj-Hn-d4T"/>
                                 </connections>
@@ -84,11 +66,7 @@
                             <!-- Go PRO: SUBTLE button -->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-0m-GAz" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="368" width="292" height="44"/>
-                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.3" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <state key="normal" title="Go PRO - Remove Signature">
-                                    <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Go PRO - Remove Signature"/>
                                 <connections>
                                     <action selector="goProPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="hFs-AN-qx4"/>
                                 </connections>
@@ -96,11 +74,7 @@
                             <!-- Restore PRO: SUBTLE button -->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq9-iS-kIh" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="422" width="292" height="44"/>
-                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.3" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <state key="normal" title="Restore PRO Purchase">
-                                    <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Restore PRO Purchase"/>
                                 <connections>
                                     <action selector="restoreButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="e6k-9U-5RA"/>
                                 </connections>
