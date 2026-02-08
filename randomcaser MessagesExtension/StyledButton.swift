@@ -39,49 +39,109 @@ class StyledButton: UIButton {
     private func applyGlassStyle(theme: Theme) {
         let currentTitle = currentTitle
 
-        switch tier {
-        case .primary:
-            var config = UIButton.Configuration.prominentGlass()
-            config.title = currentTitle
-            config.baseForegroundColor = .white
-            configuration = config
-            tintColor = theme.darkAccent
+        if theme.isGlassNative {
+            // Robotic theme: use system-default glass with no custom tinting
+            switch tier {
+            case .primary:
+                var config = UIButton.Configuration.prominentGlass()
+                config.title = currentTitle
+                config.baseForegroundColor = .white
+                applyMultilineLayout(to: &config)
+                configuration = config
+                tintColor = nil
+            case .secondary:
+                var config = UIButton.Configuration.glass()
+                config.title = currentTitle
+                config.baseForegroundColor = .label
+                applyMultilineLayout(to: &config)
+                configuration = config
+                tintColor = nil
+            case .subtle:
+                var config = UIButton.Configuration.glass()
+                config.title = currentTitle
+                config.baseForegroundColor = .secondaryLabel
+                applyMultilineLayout(to: &config)
+                configuration = config
+                tintColor = nil
+            }
+        } else {
+            // Themed glass: apply custom tint colors per tier
+            switch tier {
+            case .primary:
+                var config = UIButton.Configuration.prominentGlass()
+                config.title = currentTitle
+                config.baseForegroundColor = .white
+                applyMultilineLayout(to: &config)
+                configuration = config
+                tintColor = theme.darkAccent
 
-        case .secondary:
-            var config = UIButton.Configuration.prominentGlass()
-            config.title = currentTitle
-            config.baseForegroundColor = theme.darkAccent
-            configuration = config
-            tintColor = .white
+            case .secondary:
+                var config = UIButton.Configuration.prominentGlass()
+                config.title = currentTitle
+                config.baseForegroundColor = theme.darkAccent
+                applyMultilineLayout(to: &config)
+                configuration = config
+                tintColor = .white
 
-        case .subtle:
-            var config = UIButton.Configuration.prominentGlass()
-            config.title = currentTitle
-            config.baseForegroundColor = theme.darkAccent
-            configuration = config
-            tintColor = theme.cream
+            case .subtle:
+                var config = UIButton.Configuration.prominentGlass()
+                config.title = currentTitle
+                config.baseForegroundColor = theme.darkAccent
+                applyMultilineLayout(to: &config)
+                configuration = config
+                tintColor = theme.cream
+            }
         }
 
         cornerConfiguration = .capsule()
     }
 
+    /// Configures a button configuration for centered, word-wrapping multiline text
+    /// with compact vertical padding suited for the iMessage tray.
+    private func applyMultilineLayout(to config: inout UIButton.Configuration) {
+        config.titleLineBreakMode = .byWordWrapping
+        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+        // Center each line of wrapped text via paragraph style
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.alignment = .center
+            out.paragraphStyle = paragraph
+            return out
+        }
+    }
+
     // MARK: - Legacy (iOS < 26)
 
     private func applyLegacyStyle(theme: Theme) {
-        switch tier {
-        case .primary:
-            backgroundColor = theme.primaryButtonBackground
-            setTitleColor(theme.primaryButtonText, for: .normal)
-        case .secondary:
-            backgroundColor = theme.secondaryButtonBackground
-            setTitleColor(theme.secondaryButtonText, for: .normal)
-        case .subtle:
-            backgroundColor = theme.subtleButtonBackground
-            setTitleColor(theme.subtleButtonText, for: .normal)
+        // Use UIButton.Configuration for pre-glass iOS (15+) to get
+        // multiline centered text with compact padding and avoid deprecation warnings.
+        var config = UIButton.Configuration.filled()
+        config.title = currentTitle
+        config.titleLineBreakMode = .byWordWrapping
+        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+        config.cornerStyle = .capsule
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.alignment = .center
+            out.paragraphStyle = paragraph
+            return out
         }
 
-        layer.cornerRadius = 22
-        clipsToBounds = true
+        switch tier {
+        case .primary:
+            config.baseBackgroundColor = theme.primaryButtonBackground
+            config.baseForegroundColor = theme.primaryButtonText
+        case .secondary:
+            config.baseBackgroundColor = theme.secondaryButtonBackground
+            config.baseForegroundColor = theme.secondaryButtonText
+        case .subtle:
+            config.baseBackgroundColor = theme.subtleButtonBackground
+            config.baseForegroundColor = theme.subtleButtonText
+        }
+
+        configuration = config
     }
 
     // MARK: - Title Sync

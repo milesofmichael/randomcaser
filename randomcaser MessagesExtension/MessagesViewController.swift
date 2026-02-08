@@ -33,6 +33,9 @@ class MessagesViewController: MSMessagesAppViewController {
     /// Scroll view wrapping all content; created programmatically in setupScrollLayout().
     private var scrollView: UIScrollView!
 
+    /// Theme picker button shown to PRO users, created programmatically.
+    private var switchThemeButton: StyledButton!
+
     /// Pending title-revert timers per button, so they can be cancelled on re-press or new input.
     private var titleRevertWorkItems: [UIButton: DispatchWorkItem] = [:]
 
@@ -51,6 +54,11 @@ class MessagesViewController: MSMessagesAppViewController {
             overrideUserInterfaceStyle = .light
         }
 
+        // Create the Switch Theme button programmatically
+        switchThemeButton = StyledButton(type: .system)
+        switchThemeButton.setTitle("Switch Theme", for: .normal)
+        switchThemeButton.tier = .secondary
+
         // Assign button visual tiers
         randomizeButton.tier = .primary
         copyToClipboardButton.tier = .secondary
@@ -67,10 +75,19 @@ class MessagesViewController: MSMessagesAppViewController {
         applyTheme(Theme.current)
         applyCornerStyling()
 
+        // Update Go PRO button text
+        goProButton.setTitle("Go PRO - Support Us + Unlock All Themes -- One-Time Purchase, No Subscription!", for: .normal)
+
+        // Show/hide buttons based on PRO status
         if isProUser {
+            goProButton.isHidden = true
             restorePurchaseButton.isHidden = true
-            goProButton.isUserInteractionEnabled = false
-            goProButton.setTitle("Thanks for being a PRO user!", for: .normal)
+            switchThemeButton.isHidden = false
+            configureSwitchThemeMenu()
+        } else {
+            goProButton.isHidden = false
+            restorePurchaseButton.isHidden = false
+            switchThemeButton.isHidden = true
         }
     }
 
@@ -85,6 +102,7 @@ class MessagesViewController: MSMessagesAppViewController {
             inputTextField, outputLabel,
             randomizeButton, sendMessageButton,
             addToMessageButton, copyToClipboardButton,
+            switchThemeButton,
             goProButton, restorePurchaseButton
         ]
 
@@ -122,12 +140,13 @@ class MessagesViewController: MSMessagesAppViewController {
 
             inputTextField.heightAnchor.constraint(equalToConstant: 48),
             outputLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
-            randomizeButton.heightAnchor.constraint(equalToConstant: 44),
-            copyToClipboardButton.heightAnchor.constraint(equalToConstant: 44),
-            addToMessageButton.heightAnchor.constraint(equalToConstant: 44),
-            sendMessageButton.heightAnchor.constraint(equalToConstant: 44),
-            goProButton.heightAnchor.constraint(equalToConstant: 44),
-            restorePurchaseButton.heightAnchor.constraint(equalToConstant: 44),
+            randomizeButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            copyToClipboardButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            addToMessageButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            sendMessageButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            switchThemeButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            goProButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            restorePurchaseButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
         ])
     }
 
@@ -143,8 +162,9 @@ class MessagesViewController: MSMessagesAppViewController {
         let buttons: [StyledButton] = [
             randomizeButton, copyToClipboardButton,
             addToMessageButton, sendMessageButton,
-            goProButton, restorePurchaseButton
-        ]
+            goProButton, restorePurchaseButton,
+            switchThemeButton
+        ].compactMap { $0 }
         buttons.forEach { $0.applyStyle() }
     }
 
@@ -167,6 +187,52 @@ class MessagesViewController: MSMessagesAppViewController {
         // UILabel doesn't fully support cornerConfiguration, so use layer directly
         outputLabel.layer.cornerRadius = 24
         outputLabel.clipsToBounds = true
+    }
+
+    // MARK: - Theme Picker
+
+    /// Configures the Switch Theme button with a UIMenu dropdown listing all themes.
+    /// Each menu item shows a colored circle swatch and a checkmark for the active theme.
+    private func configureSwitchThemeMenu() {
+        let currentTheme = Theme.current
+
+        let actions = Theme.allCases.map { theme in
+            UIAction(
+                title: theme.displayName,
+                image: circleImage(color: theme.previewColor, size: 22),
+                state: theme == currentTheme ? .on : .off
+            ) { [weak self] _ in
+                Theme.current = theme
+                self?.applyTheme(theme)
+                self?.configureSwitchThemeMenu() // Rebuild menu to update checkmark
+                self?.updateAppIcon(for: theme)
+                print("Theme switched to: \(theme.displayName)")
+            }
+        }
+
+        switchThemeButton.menu = UIMenu(title: "", children: actions)
+        switchThemeButton.showsMenuAsPrimaryAction = true
+    }
+
+    /// Renders a filled circle UIImage in the given color, used as a swatch in the theme menu.
+    private func circleImage(color: UIColor, size: CGFloat) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: size, height: size))
+        return renderer.image { ctx in
+            color.setFill()
+            ctx.cgContext.fillEllipse(in: CGRect(x: 0, y: 0, width: size, height: size))
+        }
+    }
+
+    /// Stub for switching the app icon to match the selected theme.
+    /// iMessage extensions don't have access to UIApplication.shared,
+    /// so this logs the intent and is ready to uncomment if a containing app is added.
+    private func updateAppIcon(for theme: Theme) {
+        let iconName = theme.iconName ?? "Default"
+        print("App icon would switch to: \(iconName)")
+        // Uncomment when a containing app provides UIApplication access:
+        // UIApplication.shared.setAlternateIconName(theme.iconName) { error in
+        //     if let error { print("Icon switch failed: \(error.localizedDescription)") }
+        // }
     }
 
     // MARK: - Conversation Handling
@@ -252,14 +318,8 @@ class MessagesViewController: MSMessagesAppViewController {
                 noTextPopup()
                 return
             }
-            if isProUser {
-                activeConversation?.sendText(text) { error in
-                    print(error?.localizedDescription ?? "Insert message worked as PRO user")
-                }
-            } else {
-                activeConversation?.sendText("\(text)\n\n-Powered by the RandomCaser iMessage App") { error in
-                    print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
-                }
+            activeConversation?.sendText(text) { error in
+                print(error?.localizedDescription ?? "Message sent successfully")
             }
             flashTitle("Sent!", on: sendMessageButton, revertTo: "Send Message")
         } else {
@@ -276,14 +336,8 @@ class MessagesViewController: MSMessagesAppViewController {
                 noTextPopup()
                 return
             }
-            if isProUser {
-                activeConversation?.insertText(text) { error in
-                    print(error?.localizedDescription ?? "Insert message worked as PRO user")
-                }
-            } else {
-                activeConversation?.insertText("\(text)\n\n-Powered by the RandomCaser iMessage App") { error in
-                    print(error?.localizedDescription ?? "Insert message worked as non-PRO user")
-                }
+            activeConversation?.insertText(text) { error in
+                print(error?.localizedDescription ?? "Message added to message box")
             }
             flashTitle("Added!", on: addToMessageButton, revertTo: "Add to Message Box")
         } else {
@@ -301,11 +355,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 noTextPopup()
                 return
             }
-            if isProUser {
-                pasteboard.string = text
-            } else {
-                pasteboard.string = "\(text)\n\n-Powered by the RandomCaser iMessage App"
-            }
+            pasteboard.string = text
             flashTitle("Copied!", on: copyToClipboardButton, revertTo: "Copy to Clipboard")
         } else {
             flashTitle("Error Copying", on: copyToClipboardButton, revertTo: "Copy to Clipboard")
