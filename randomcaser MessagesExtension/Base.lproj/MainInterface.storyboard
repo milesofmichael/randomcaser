@@ -39,12 +39,12 @@
                                     <action selector="randomizeButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Vvo-Cn-wHm"/>
                                 </connections>
                             </button>
-                            <!-- Copy to Clipboard: SECONDARY button -->
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXs-sU-F4a" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                            <!-- Send Message: SECONDARY button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yd-rB-AkM" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="206" width="292" height="44"/>
-                                <state key="normal" title="Copy to Clipboard"/>
+                                <state key="normal" title="Send Message"/>
                                 <connections>
-                                    <action selector="copyButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="akK-8H-41B"/>
+                                    <action selector="sendMessagePressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Naj-Hn-d4T"/>
                                 </connections>
                             </button>
                             <!-- Add to Message Box: SECONDARY button -->
@@ -55,12 +55,12 @@
                                     <action selector="addToMessageButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="sjf-91-IX8"/>
                                 </connections>
                             </button>
-                            <!-- Send Message: SECONDARY button -->
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yd-rB-AkM" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                            <!-- Copy to Clipboard: SECONDARY button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXs-sU-F4a" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="14" y="314" width="292" height="44"/>
-                                <state key="normal" title="Send Message"/>
+                                <state key="normal" title="Copy to Clipboard"/>
                                 <connections>
-                                    <action selector="sendMessagePressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Naj-Hn-d4T"/>
+                                    <action selector="copyButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="akK-8H-41B"/>
                                 </connections>
                             </button>
                             <!-- Go PRO: SUBTLE button -->

@@ -80,8 +80,8 @@ class MessagesViewController: MSMessagesAppViewController {
 
         let elements: [UIView] = [
             inputTextField, outputLabel,
-            randomizeButton, copyToClipboardButton,
-            addToMessageButton, sendMessageButton,
+            randomizeButton, sendMessageButton,
+            addToMessageButton, copyToClipboardButton,
             goProButton, restorePurchaseButton
         ]
 
@@ -110,15 +110,15 @@ class MessagesViewController: MSMessagesAppViewController {
             scrollView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
 
-            stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 12),
+            stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 6),
             stackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: 14),
             stackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -14),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -12),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -6),
 
             stackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -28),
 
             inputTextField.heightAnchor.constraint(equalToConstant: 48),
-            outputLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 64),
+            outputLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
             randomizeButton.heightAnchor.constraint(equalToConstant: 44),
             copyToClipboardButton.heightAnchor.constraint(equalToConstant: 44),
             addToMessageButton.heightAnchor.constraint(equalToConstant: 44),
