@@ -1,0 +1,60 @@
+APP NAME
+RandomCaser
+
+SUBTITLE (30 chars max)
+rAnDoMiZe YoUr TeXt CaSe
+
+PROMOTIONAL TEXT (170 chars max, can be updated anytime without a new build)
+Type it. Randomize it. Send it. The fastest way to send chaotic text in iMessage — now with 5 stunning themes.
+
+DESCRIPTION
+tYpE sOmEtHiNg NoRmAl. gEt SoMeThInG wEiRd.
+
+RandomCaser lives right inside iMessage. Type your text, tap to randomize the case, and send it — all without leaving the conversation.
+
+HOW IT WORKS
+Type or paste any text. Tap Re-Randomize until it looks just right (or just wrong enough). Send it directly, drop it in the message box to edit first, or copy it to your clipboard.
+
+THREE WAYS TO USE IT
+Send Message — fires it straight into the chat.
+Add to Message Box — drops it into the compose field so you can tweak it before sending.
+Copy to Clipboard — grab it for use anywhere else on your device.
+
+GO PRO — ONE PRICE, FOREVER
+Unlock 5 handcrafted themes with a single purchase. No subscriptions. No ads. Just vibes.
+
+THEMES
+Sage Park — calm, sophisticated greens inspired by a luxury hotel lobby.
+Beach Claw — warm sand tones with cool ocean blue accents.
+Royal Purple — bold, regal purple for when you're feeling fancy.
+Red n Black — high-contrast and unapologetically loud.
+Robotic — clean, minimal, pure system design.
+
+Built with Liquid Glass on iOS 26 for a modern, premium feel.
+
+Perfect for roasting your group chat, making a point, or just being chaotic.
+
+KEYWORDS (100 chars max, comma-separated)
+random,case,text,mocking,spongebob,meme,generator,imessage,funny,capitalize
+
+WHATS NEW
+New themes, Liquid Glass design on iOS 26, and a refreshed UI.
+
+CATEGORY
+Primary: Entertainment
+Secondary: Utilities
+
+AGE RATING
+4+
+
+COPYRIGHT
+2026 Michael Miles
+
+PRIVACY POLICY URL
+You need one even if the app collects nothing. A simple page stating "RandomCaser does not collect, store, or share any personal data" hosted anywhere works.
+
+SCREENSHOT TIPS
+Show the compact iMessage tray view with randomized text.
+Show a before/after: normal text in, chaotic text out.
+One screenshot per theme to show off PRO.
+Lead with the funniest randomized text you can think of — that is the hook.
