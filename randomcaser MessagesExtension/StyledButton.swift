@@ -8,8 +8,8 @@ enum ButtonTier {
     case primary
     /// Standard action (e.g. Copy, Send). Uses glass on iOS 26+.
     case secondary
-    /// De-emphasized action (e.g. Go PRO, Restore). Uses lighter glass on iOS 26+.
-    case subtle
+    /// Vibrant themed action (e.g. Switch Theme, Go PRO). Uses prominentGlass with theme tint on iOS 26+.
+    case action
 }
 
 /// A UIButton subclass that applies consistent styling based on its `tier` and the current theme.
@@ -40,7 +40,7 @@ class StyledButton: UIButton {
         let currentTitle = currentTitle
 
         if theme.isGlassNative {
-            // Robotic theme: use system-default glass with no custom tinting
+            // Robotic theme: system glass with minimal tinting
             switch tier {
             case .primary:
                 var config = UIButton.Configuration.prominentGlass()
@@ -56,13 +56,13 @@ class StyledButton: UIButton {
                 applyMultilineLayout(to: &config)
                 configuration = config
                 tintColor = nil
-            case .subtle:
-                var config = UIButton.Configuration.glass()
+            case .action:
+                var config = UIButton.Configuration.prominentGlass()
                 config.title = currentTitle
-                config.baseForegroundColor = .secondaryLabel
+                config.baseForegroundColor = .white
                 applyMultilineLayout(to: &config)
                 configuration = config
-                tintColor = nil
+                tintColor = .black
             }
         } else {
             // Themed glass: apply custom tint colors per tier
@@ -83,13 +83,13 @@ class StyledButton: UIButton {
                 configuration = config
                 tintColor = .white
 
-            case .subtle:
+            case .action:
                 var config = UIButton.Configuration.prominentGlass()
                 config.title = currentTitle
-                config.baseForegroundColor = theme.darkAccent
+                config.baseForegroundColor = theme.actionButtonText
                 applyMultilineLayout(to: &config)
                 configuration = config
-                tintColor = theme.cream
+                tintColor = theme.actionButtonBackground
             }
         }
 
@@ -136,9 +136,9 @@ class StyledButton: UIButton {
         case .secondary:
             config.baseBackgroundColor = theme.secondaryButtonBackground
             config.baseForegroundColor = theme.secondaryButtonText
-        case .subtle:
-            config.baseBackgroundColor = theme.subtleButtonBackground
-            config.baseForegroundColor = theme.subtleButtonText
+        case .action:
+            config.baseBackgroundColor = theme.actionButtonBackground
+            config.baseForegroundColor = theme.actionButtonText
         }
 
         configuration = config
