@@ -17,173 +17,97 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Text Here..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HZd-Dr-HXE">
-                                <rect key="frame" x="14" y="20" width="292" height="34"/>
+                                <rect key="frame" x="14" y="20" width="292" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="ObA-dk-sSI" id="pox-6A-Nwe"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rAndOmIZeD rEsULt AppEArS hERe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Voj-ob-B6q">
-                                <rect key="frame" x="25" y="64" width="270" height="42.5"/>
-                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.15" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="25" y="78" width="270" height="64"/>
+                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S7V-oY-Gg3">
-                                <rect key="frame" x="14" y="116.5" width="292" height="144"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dnk-ib-v3v">
-                                        <rect key="frame" x="0.0" y="0.0" width="292" height="30"/>
-                                        <subviews>
-                                            <!-- Re-Randomize: PRIMARY button (dark sage bg, cream text) -->
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUs-WP-CKZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
-                                                <color key="backgroundColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <state key="normal" title="Re-Randomize">
-                                                    <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <real key="value" value="14"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="randomizeButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Vvo-Cn-wHm"/>
-                                                </connections>
-                                            </button>
-                                            <!-- Copy to Clipboard: SECONDARY button (cream bg, dark sage text) -->
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXs-sU-F4a">
-                                                <rect key="frame" x="138" y="0.0" width="162" height="30"/>
-                                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <state key="normal" title="Copy to Clipboard">
-                                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <real key="value" value="14"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="copyButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="akK-8H-41B"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NRw-H7-ubT">
-                                        <rect key="frame" x="0.0" y="38" width="292" height="30"/>
-                                        <subviews>
-                                            <!-- Add to Message Box: SECONDARY button -->
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-zX-MZo">
-                                                <rect key="frame" x="0.0" y="0.0" width="169" height="30"/>
-                                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <state key="normal" title="Add to Message Box">
-                                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <real key="value" value="14"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="addToMessageButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="sjf-91-IX8"/>
-                                                </connections>
-                                            </button>
-                                            <!-- Send Message: SECONDARY button -->
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yd-rB-AkM">
-                                                <rect key="frame" x="177" y="0.0" width="123" height="30"/>
-                                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <state key="normal" title="Send Message">
-                                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <real key="value" value="14"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="sendMessagePressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Naj-Hn-d4T"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <!-- Go PRO: SUBTLE button (translucent cream bg, cream text) -->
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-0m-GAz">
-                                        <rect key="frame" x="0.0" y="76" width="292" height="30"/>
-                                        <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.3" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <state key="normal" title="Go PRO - Remove Signature">
-                                            <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <real key="value" value="14"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="goProPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="hFs-AN-qx4"/>
-                                        </connections>
-                                    </button>
-                                    <!-- Restore PRO: SUBTLE button (translucent cream bg, cream text) -->
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq9-iS-kIh">
-                                        <rect key="frame" x="0.0" y="114" width="292" height="30"/>
-                                        <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.3" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <state key="normal" title="Restore PRO Purchase">
-                                            <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <real key="value" value="14"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="restoreButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="e6k-9U-5RA"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="LYG-0m-GAz" secondAttribute="trailing" id="9DR-g3-STW"/>
-                                    <constraint firstItem="LYG-0m-GAz" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="EKd-90-ucb"/>
-                                    <constraint firstItem="NRw-H7-ubT" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="NPj-MT-l1I"/>
-                                    <constraint firstItem="dnk-ib-v3v" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="PpH-rv-hzP"/>
-                                    <constraint firstItem="aq9-iS-kIh" firstAttribute="leading" secondItem="S7V-oY-Gg3" secondAttribute="leading" id="Xnp-4r-C4q"/>
-                                    <constraint firstAttribute="trailing" secondItem="NRw-H7-ubT" secondAttribute="trailing" id="hbh-D3-FSR"/>
-                                    <constraint firstAttribute="trailing" secondItem="aq9-iS-kIh" secondAttribute="trailing" id="sB2-M5-2Ec"/>
-                                    <constraint firstAttribute="trailing" secondItem="dnk-ib-v3v" secondAttribute="trailing" id="ve8-Z6-Lib"/>
-                                </constraints>
-                            </stackView>
+                            <!-- Re-Randomize: PRIMARY button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUs-WP-CKZ" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="14" y="152" width="292" height="44"/>
+                                <color key="backgroundColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Re-Randomize">
+                                    <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="randomizeButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Vvo-Cn-wHm"/>
+                                </connections>
+                            </button>
+                            <!-- Copy to Clipboard: SECONDARY button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXs-sU-F4a" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="14" y="206" width="292" height="44"/>
+                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Copy to Clipboard">
+                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="copyButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="akK-8H-41B"/>
+                                </connections>
+                            </button>
+                            <!-- Add to Message Box: SECONDARY button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-zX-MZo" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="14" y="260" width="292" height="44"/>
+                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Add to Message Box">
+                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addToMessageButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="sjf-91-IX8"/>
+                                </connections>
+                            </button>
+                            <!-- Send Message: SECONDARY button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yd-rB-AkM" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="14" y="314" width="292" height="44"/>
+                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Send Message">
+                                    <color key="titleColor" red="0.24" green="0.36" blue="0.29" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMessagePressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Naj-Hn-d4T"/>
+                                </connections>
+                            </button>
+                            <!-- Go PRO: SUBTLE button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-0m-GAz" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="14" y="368" width="292" height="44"/>
+                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.3" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Go PRO - Remove Signature">
+                                    <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goProPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="hFs-AN-qx4"/>
+                                </connections>
+                            </button>
+                            <!-- Restore PRO: SUBTLE button -->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq9-iS-kIh" customClass="StyledButton" customModule="randomcaser_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="14" y="422" width="292" height="44"/>
+                                <color key="backgroundColor" red="0.96" green="0.95" blue="0.93" alpha="0.3" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Restore PRO Purchase">
+                                    <color key="titleColor" red="0.96" green="0.95" blue="0.93" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="restoreButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="e6k-9U-5RA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <!-- Background: Park MGM-inspired muted sage green -->
                         <color key="backgroundColor" red="0.36" green="0.48" blue="0.42" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="LDy-ih-0nr" firstAttribute="trailing" secondItem="Voj-ob-B6q" secondAttribute="trailing" constant="25" id="4mB-Ks-5xX"/>
-                            <constraint firstItem="S7V-oY-Gg3" firstAttribute="leading" secondItem="LDy-ih-0nr" secondAttribute="leading" constant="14" id="MxW-4e-9xc"/>
-                            <constraint firstAttribute="trailing" secondItem="S7V-oY-Gg3" secondAttribute="trailing" constant="14" id="OEi-H3-LoX"/>
-                            <constraint firstItem="S7V-oY-Gg3" firstAttribute="top" secondItem="Voj-ob-B6q" secondAttribute="bottom" constant="10" id="Pve-fc-WyG"/>
-                            <constraint firstItem="HZd-Dr-HXE" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" constant="20" id="b5x-tD-4UL"/>
-                            <constraint firstItem="Voj-ob-B6q" firstAttribute="leading" secondItem="LDy-ih-0nr" secondAttribute="leading" constant="25" id="bfh-gI-A4O"/>
-                            <constraint firstItem="HZd-Dr-HXE" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="14" id="fez-HS-x1h"/>
-                            <constraint firstItem="Voj-ob-B6q" firstAttribute="top" secondItem="HZd-Dr-HXE" secondAttribute="bottom" constant="10" id="vCN-bh-Uxt"/>
-                            <constraint firstAttribute="trailing" secondItem="HZd-Dr-HXE" secondAttribute="trailing" constant="14" id="vur-FY-fNv"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

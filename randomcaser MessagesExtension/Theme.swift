@@ -15,7 +15,7 @@ enum Theme: String, CaseIterable {
 
     var outputBackground: UIColor {
         switch self {
-        case .sage: return cream.withAlphaComponent(0.15)
+        case .sage: return cream.withAlphaComponent(0.25)
         }
     }
 
@@ -47,13 +47,14 @@ enum Theme: String, CaseIterable {
 
     var subtleButtonBackground: UIColor {
         switch self {
-        case .sage: return cream.withAlphaComponent(0.3)
+        // Warm sand — lighter than cream, nods to Park MGM's marble/stone tones
+        case .sage: return UIColor(red: 0.88, green: 0.85, blue: 0.80, alpha: 1.0)  // #E0D9CC
         }
     }
 
     var subtleButtonText: UIColor {
         switch self {
-        case .sage: return cream
+        case .sage: return darkAccent
         }
     }
 
@@ -65,15 +66,24 @@ enum Theme: String, CaseIterable {
         }
     }
 
-    // MARK: - Base colors (private helpers)
+    // MARK: - Glass tint (iOS 26+)
 
-    private var cream: UIColor {
+    /// The tint color applied to Liquid Glass button materials.
+    var glassTint: UIColor {
+        switch self {
+        case .sage: return darkAccent
+        }
+    }
+
+    // MARK: - Base colors
+
+    var cream: UIColor {
         switch self {
         case .sage: return UIColor(red: 0.96, green: 0.95, blue: 0.93, alpha: 1.0)   // #F5F2ED
         }
     }
 
-    private var darkAccent: UIColor {
+    var darkAccent: UIColor {
         switch self {
         case .sage: return UIColor(red: 0.24, green: 0.36, blue: 0.29, alpha: 1.0)   // #3D5C4A
         }

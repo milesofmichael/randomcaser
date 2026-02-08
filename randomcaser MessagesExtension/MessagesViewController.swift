@@ -16,37 +16,53 @@ enum CharCase: CaseIterable {
 }
 
 class MessagesViewController: MSMessagesAppViewController {
-    
+
+    // MARK: - Outlets (connected in storyboard)
+
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var outputLabel: UILabel!
-    @IBOutlet weak var randomizeButton: UIButton!
-    @IBOutlet weak var sendMessageButton: UIButton!
-    @IBOutlet weak var addToMessageButton: UIButton!
-    @IBOutlet weak var copyToClipboardButton: UIButton!
-    @IBOutlet weak var goProButton: UIButton!
-    @IBOutlet weak var restorePurchaseButton: UIButton!
-    
+    @IBOutlet weak var randomizeButton: StyledButton!
+    @IBOutlet weak var sendMessageButton: StyledButton!
+    @IBOutlet weak var addToMessageButton: StyledButton!
+    @IBOutlet weak var copyToClipboardButton: StyledButton!
+    @IBOutlet weak var goProButton: StyledButton!
+    @IBOutlet weak var restorePurchaseButton: StyledButton!
+
+    // MARK: - Properties
+
+    /// Scroll view wrapping all content; created programmatically in setupScrollLayout().
+    private var scrollView: UIScrollView!
+
     let defaults = UserDefaults.standard
-    
     var isProUser = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-    
-    //MARK: UI Setup
-    func setupUI() {
-        overrideUserInterfaceStyle = .light
 
-        // These buttons need autoresizing for programmatic layout adjustments
-        copyToClipboardButton.translatesAutoresizingMaskIntoConstraints = true
-        addToMessageButton.translatesAutoresizingMaskIntoConstraints = true
-        sendMessageButton.translatesAutoresizingMaskIntoConstraints = true
+    // MARK: - UI Setup
+
+    func setupUI() {
+        // Let Liquid Glass adapt naturally on iOS 26+; force light on older versions
+        if #unavailable(iOS 26.0) {
+            overrideUserInterfaceStyle = .light
+        }
+
+        // Assign button visual tiers
+        randomizeButton.tier = .primary
+        copyToClipboardButton.tier = .secondary
+        addToMessageButton.tier = .secondary
+        sendMessageButton.tier = .secondary
+        goProButton.tier = .subtle
+        restorePurchaseButton.tier = .subtle
+
+        // Build the scroll view + vertical stack layout programmatically
+        setupScrollLayout()
 
         inputTextField.addTarget(self, action: #selector(textDidChange(_:)), for: UIControl.Event.editingChanged)
 
         applyTheme(Theme.current)
+        applyCornerStyling()
 
         if isProUser {
             restorePurchaseButton.isHidden = true
@@ -55,38 +71,108 @@ class MessagesViewController: MSMessagesAppViewController {
         }
     }
 
-    /// Applies the given theme's color palette to all UI elements.
-    /// Storyboard handles layout (constraints, corner radii); this handles color.
+    /// Tears down the storyboard layout and rebuilds it as a scrollable vertical stack.
+    /// The storyboard is only used for view instantiation and IBOutlet/IBAction connections.
+    private func setupScrollLayout() {
+        // Remove views from storyboard hierarchy
+        view.subviews.forEach { $0.removeFromSuperview() }
+        view.removeConstraints(view.constraints)
+
+        let elements: [UIView] = [
+            inputTextField, outputLabel,
+            randomizeButton, copyToClipboardButton,
+            addToMessageButton, sendMessageButton,
+            goProButton, restorePurchaseButton
+        ]
+
+        // Scroll view — allows content to scroll in compact iMessage tray
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.keyboardDismissMode = .onDrag
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
+        self.scrollView = scrollView
+
+        // Vertical stack — holds all elements in a single column
+        let stackView = UIStackView(arrangedSubviews: elements)
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(stackView)
+
+        elements.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+
+        let guide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: guide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+
+            stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 12),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: 14),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -14),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -12),
+
+            stackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -28),
+
+            inputTextField.heightAnchor.constraint(equalToConstant: 48),
+            outputLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 64),
+            randomizeButton.heightAnchor.constraint(equalToConstant: 44),
+            copyToClipboardButton.heightAnchor.constraint(equalToConstant: 44),
+            addToMessageButton.heightAnchor.constraint(equalToConstant: 44),
+            sendMessageButton.heightAnchor.constraint(equalToConstant: 44),
+            goProButton.heightAnchor.constraint(equalToConstant: 44),
+            restorePurchaseButton.heightAnchor.constraint(equalToConstant: 44),
+        ])
+    }
+
+    /// Applies the theme's color palette to the root view and content elements.
+    /// Buttons style themselves via StyledButton.applyStyle() based on their tier.
     func applyTheme(_ theme: Theme) {
         view.backgroundColor = theme.background
 
-        // Primary action button
-        randomizeButton.backgroundColor = theme.primaryButtonBackground
-        randomizeButton.setTitleColor(theme.primaryButtonText, for: .normal)
-
-        // Secondary action buttons
-        for button in [copyToClipboardButton, addToMessageButton, sendMessageButton] {
-            button?.backgroundColor = theme.secondaryButtonBackground
-            button?.setTitleColor(theme.secondaryButtonText, for: .normal)
-        }
-
-        // Subtle pro/restore buttons
-        goProButton.backgroundColor = theme.subtleButtonBackground
-        goProButton.setTitleColor(theme.subtleButtonText, for: .normal)
-        restorePurchaseButton.backgroundColor = theme.subtleButtonBackground
-        restorePurchaseButton.setTitleColor(theme.subtleButtonText, for: .normal)
-
-        // Output label
         outputLabel.backgroundColor = theme.outputBackground
         outputLabel.textColor = theme.outputText
+
+        // Buttons self-style from their tier + the current theme
+        let buttons: [StyledButton] = [
+            randomizeButton, copyToClipboardButton,
+            addToMessageButton, sendMessageButton,
+            goProButton, restorePurchaseButton
+        ]
+        buttons.forEach { $0.applyStyle() }
     }
-    
+
+    /// Applies rounded corners using the modern cornerConfiguration API on iOS 26+
+    /// or the classic layer.cornerRadius on earlier versions.
+    private func applyCornerStyling() {
+        // Remove default rounded rect border so custom corner radius takes effect,
+        // then add left padding. Don't set rightView — it conflicts with clearButton.
+        inputTextField.borderStyle = .none
+        inputTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 1))
+        inputTextField.leftViewMode = .always
+
+        if #available(iOS 26.0, *) {
+            inputTextField.cornerConfiguration = .capsule()
+        } else {
+            inputTextField.layer.cornerRadius = 24
+            inputTextField.clipsToBounds = true
+        }
+
+        // UILabel doesn't fully support cornerConfiguration, so use layer directly
+        outputLabel.layer.cornerRadius = 24
+        outputLabel.clipsToBounds = true
+    }
+
     // MARK: - Conversation Handling
+
     override func willBecomeActive(with conversation: MSConversation) {
         isProUser = defaults.bool(forKey: "Is Pro User")
-        
+
         setupUI()
-        
+
         if let savedString = defaults.string(forKey: "Initial Text") {
             inputTextField.text = savedString
             outputLabel.text = randomizeCase(inputText: savedString)
@@ -94,15 +180,15 @@ class MessagesViewController: MSMessagesAppViewController {
             print("Saved string == nil")
         }
     }
-    
+
     override func didBecomeActive(with conversation: MSConversation) {
+        // Hide iMessage-only buttons when not in a conversation context
         if activeConversation == nil {
-            sendMessageButton.removeFromSuperview()
-            addToMessageButton.removeFromSuperview()
-            view.addConstraint(NSLayoutConstraint(item: copyToClipboardButton!, attribute: .top, relatedBy: .equal, toItem: randomizeButton, attribute: .bottom, multiplier: 1, constant: 8))
+            sendMessageButton.isHidden = true
+            addToMessageButton.isHidden = true
         }
     }
-    
+
     override func didResignActive(with conversation: MSConversation) {
         if let text = inputTextField.text {
             if text.isEmpty {
@@ -113,22 +199,23 @@ class MessagesViewController: MSMessagesAppViewController {
         } else {
             defaults.set(nil, forKey: "Initial Text")
         }
-        
+
         if isProUser {
             defaults.set(true, forKey: "Is Pro User")
         }
     }
-    
+
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         if presentationStyle == .expanded {
             inputTextField.becomeFirstResponder()
         }
     }
-    
-    //MARK: Randomcasing Method
+
+    // MARK: - Randomcasing Method
+
     private func randomizeCase(inputText: String) -> String {
         var output = ""
-        
+
         for char in inputText {
             let random = CharCase.allCases.randomElement()
             switch random {
@@ -142,18 +229,19 @@ class MessagesViewController: MSMessagesAppViewController {
                 fatalError("random enum was empty")
             }
         }
-        
+
         return output
     }
-    
-    //MARK: Button IBActions
+
+    // MARK: - Button Actions
+
     @IBAction func randomizeButtonPressed(_ sender: Any) {
         sendMessageButton.setTitle("Send Message", for: .normal)
         addToMessageButton.setTitle("Add to Message Box", for: .normal)
         copyToClipboardButton.setTitle("Copy to Clipboard", for: .normal)
         outputLabel.text = randomizeCase(inputText: outputLabel.text ?? "rAndOmIZeD rEsULt AppEArS hERe")
     }
-    
+
     @IBAction func sendMessagePressed(_ sender: Any) {
         if let text = outputLabel.text {
             if text == "rAndOmIZeD rEsULt AppEArS hERe" {
@@ -177,7 +265,7 @@ class MessagesViewController: MSMessagesAppViewController {
             self.requestPresentationStyle(.compact)
         }
     }
-    
+
     @IBAction func addToMessageButtonPressed(_ sender: Any) {
         if let text = outputLabel.text {
             if text == "rAndOmIZeD rEsULt AppEArS hERe" {
@@ -194,7 +282,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 }
             }
             addToMessageButton.setTitle("Added!", for: .normal)
-            
+
         } else {
             addToMessageButton.setTitle("Error", for: .normal)
         }
@@ -202,7 +290,7 @@ class MessagesViewController: MSMessagesAppViewController {
             self.requestPresentationStyle(.compact)
         }
     }
-    
+
     @IBAction func copyButtonPressed(_ sender: Any) {
         let pasteboard = UIPasteboard.general
         if let text = outputLabel.text {
@@ -223,28 +311,29 @@ class MessagesViewController: MSMessagesAppViewController {
             self.requestPresentationStyle(.compact)
         }
     }
-    
+
     private func noTextPopup() {
         let alert = UIAlertController(title: "No Text Available", message: "Start typing in the text box to get started!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
-    
+
 }
 
-//MARK: Text Field Methods
+// MARK: - Text Field Methods
+
 extension MessagesViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if self.presentationStyle == .compact {
             self.requestPresentationStyle(.expanded)
         }
     }
-    
+
     @objc func textDidChange(_ textField: UITextField) {
         sendMessageButton.setTitle("Send Message", for: .normal)
         addToMessageButton.setTitle("Add to Message Box", for: .normal)
         copyToClipboardButton.setTitle("Copy to Clipboard", for: .normal)
-        
+
         if let text = textField.text {
             if text.isEmpty {
                 outputLabel.text = "rAndOmIZeD rEsULt AppEArS hERe"
@@ -257,7 +346,8 @@ extension MessagesViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: In-App Purchase Handling
+// MARK: - In-App Purchase Handling
+
 extension MessagesViewController: SKPaymentTransactionObserver {
     /// Payment queue observer method - called from any thread by StoreKit
     /// Marked nonisolated to avoid Swift 6 concurrency warnings, with manual main actor dispatch for UI updates
@@ -266,14 +356,12 @@ extension MessagesViewController: SKPaymentTransactionObserver {
             switch transaction.transactionState {
             case .purchased:
                 print("Purchase worked!")
-                // Dispatch UI updates to main actor
                 Task { @MainActor in
                     self.isProUser = true
                     self.setupUI()
                 }
             case .restored:
                 print("Purchase restored.")
-                // Dispatch UI updates to main actor
                 Task { @MainActor in
                     self.isProUser = true
                     self.setupUI()
@@ -281,19 +369,12 @@ extension MessagesViewController: SKPaymentTransactionObserver {
             case .failed:
                 print(transaction.error!.localizedDescription)
                 print(transaction.transactionIdentifier ?? "Payment failed w/ no transaction ID.")
-//                inAppPurchaseFailNotice()
             default:
                 print("Default called")
             }
         }
     }
-    
-//    private func inAppPurchaseFailNotice() {
-//        let alert = UIAlertController(title: "In-App Purchase Failed", message: "Check your internet connection/payment methods and try again!", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-//        self.present(alert, animated: true)
-//    }
-    
+
     @IBAction func goProPressed(_ sender: Any) {
         SKPaymentQueue.default().add(self)
         if SKPaymentQueue.canMakePayments() {
@@ -304,7 +385,7 @@ extension MessagesViewController: SKPaymentTransactionObserver {
             print("SKPaymentQueue didn't work")
         }
     }
-    
+
     @IBAction func restoreButtonPressed(_ sender: Any) {
         SKPaymentQueue.default().restoreCompletedTransactions()
     }

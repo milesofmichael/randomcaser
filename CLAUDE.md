@@ -11,4 +11,7 @@ iMessage extension (only) that randomizes text case and sends messages. Written 
 
 ## Theming
 - in Theme.swift
+
+## UI
 - colors are applied in MessagesViewController
+- all other UI elements/modifiers done in Main.storyboard

@@ -15,6 +15,8 @@
 		5C19E76D237E3B9C00032903 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C19E76C237E3B9C00032903 /* StoreKit.framework */; };
 		5C19E775237E63D500032903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E774237E63D500032903 /* Assets.xcassets */; };
 		AA000001237BD8CA00CD779F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002237BD8CA00CD779F /* Theme.swift */; };
+		AA000004237BD8CA00CD779F /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000003237BD8CA00CD779F /* StyledButton.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		5C19E76C237E3B9C00032903 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5C19E774237E63D500032903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA000002237BD8CA00CD779F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AA000003237BD8CA00CD779F /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 			children = (
 				5C120FD5237BD8C900CD779F /* MessagesViewController.swift */,
 				AA000002237BD8CA00CD779F /* Theme.swift */,
+				AA000003237BD8CA00CD779F /* StyledButton.swift */,
+
 				5C120FD7237BD8C900CD779F /* MainInterface.storyboard */,
 				5C120FDA237BD8C900CD779F /* Assets.xcassets */,
 				5C120FDC237BD8C900CD779F /* Info.plist */,
@@ -218,6 +224,7 @@
 			files = (
 				5C120FD6237BD8C900CD779F /* MessagesViewController.swift in Sources */,
 				AA000001237BD8CA00CD779F /* Theme.swift in Sources */,
+				AA000004237BD8CA00CD779F /* StyledButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
