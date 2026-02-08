@@ -76,7 +76,7 @@ class MessagesViewController: MSMessagesAppViewController {
         applyCornerStyling()
 
         // Update Go PRO button text
-        goProButton.setTitle("Go PRO - Support Us + Unlock All Themes -- One-Time Purchase, No Subscription!", for: .normal)
+        goProButton.setTitle("✨ Go PRO — More Themes, One Price, Forever", for: .normal)
 
         // Show/hide buttons based on PRO status
         if isProUser {
@@ -242,7 +242,7 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Conversation Handling
 
     override func willBecomeActive(with conversation: MSConversation) {
-        isProUser = true
+        isProUser = defaults.bool(forKey: "Is Pro User")
 
         setupUI()
 

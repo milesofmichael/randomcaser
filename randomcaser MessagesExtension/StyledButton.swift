@@ -60,7 +60,7 @@ class StyledButton: UIButton {
                 var config = UIButton.Configuration.prominentGlass()
                 config.title = currentTitle
                 config.baseForegroundColor = .white
-                applyMultilineLayout(to: &config)
+                applyMultilineLayout(to: &config, bold: true)
                 configuration = config
                 tintColor = .black
             }
@@ -87,7 +87,7 @@ class StyledButton: UIButton {
                 var config = UIButton.Configuration.prominentGlass()
                 config.title = currentTitle
                 config.baseForegroundColor = theme.actionButtonText
-                applyMultilineLayout(to: &config)
+                applyMultilineLayout(to: &config, bold: true)
                 configuration = config
                 tintColor = theme.actionButtonBackground
             }
@@ -98,15 +98,17 @@ class StyledButton: UIButton {
 
     /// Configures a button configuration for centered, word-wrapping multiline text
     /// with compact vertical padding suited for the iMessage tray.
-    private func applyMultilineLayout(to config: inout UIButton.Configuration) {
+    private func applyMultilineLayout(to config: inout UIButton.Configuration, bold: Bool = false) {
         config.titleLineBreakMode = .byWordWrapping
         config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
-        // Center each line of wrapped text via paragraph style
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var out = incoming
             let paragraph = NSMutableParagraphStyle()
             paragraph.alignment = .center
             out.paragraphStyle = paragraph
+            if bold {
+                out.font = UIFont.boldSystemFont(ofSize: UIFont.buttonFontSize)
+            }
             return out
         }
     }
@@ -118,16 +120,9 @@ class StyledButton: UIButton {
         // multiline centered text with compact padding and avoid deprecation warnings.
         var config = UIButton.Configuration.filled()
         config.title = currentTitle
-        config.titleLineBreakMode = .byWordWrapping
-        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
         config.cornerStyle = .capsule
-        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
-            var out = incoming
-            let paragraph = NSMutableParagraphStyle()
-            paragraph.alignment = .center
-            out.paragraphStyle = paragraph
-            return out
-        }
+        let isBold = tier == .action
+        applyMultilineLayout(to: &config, bold: isBold)
 
         switch tier {
         case .primary:
